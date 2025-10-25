@@ -10,10 +10,11 @@ import java.util.UUID;
 
 @Service
 public class UserService {
+
+    private final String USER_NOT_FOUND = "User not found";
     
     private final UserRepository userRepository;
     private final UserMapper userMapper;
-    private final String ERROR_MESSAGE = "User not found";
 
     @Autowired
     public UserService(UserRepository userRepository, UserMapper userMapper) {
@@ -27,7 +28,7 @@ public class UserService {
     
     public UserDto findById(UUID id) {
         return userMapper.toDto(userRepository.findByBusinessId(id)
-                .orElseThrow(() -> new EntityNotFoundException(ERROR_MESSAGE)));
+                .orElseThrow(() -> new EntityNotFoundException(USER_NOT_FOUND)));
     }
     
     @Transactional
@@ -38,7 +39,7 @@ public class UserService {
     @Transactional
     public UserDto update(UserDto userDto) {
         User user = userRepository.getByBusinessId(userDto.id());
-        if (user == null) throw new EntityNotFoundException(ERROR_MESSAGE);
+        if (user == null) throw new EntityNotFoundException(USER_NOT_FOUND);
         userMapper.updateUserFromDto(userDto, user);
         return userMapper.toDto(userRepository.saveAndFlush(user));
     }
