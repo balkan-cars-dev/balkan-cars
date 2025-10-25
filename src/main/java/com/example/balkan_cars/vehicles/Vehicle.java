@@ -1,19 +1,16 @@
-package com.example.balkan_cars.car;
+package com.example.balkan_cars.vehicles;
 
-import com.example.balkan_cars.enums.FuelType;
-import com.example.balkan_cars.enums.TransmissionType;
 import com.example.balkan_cars.shared.BaseEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
 
-@Entity
-@Table(name = "_car")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Car extends BaseEntity {
+@MappedSuperclass
+public abstract class Vehicle extends BaseEntity {
 
     @NotBlank
     @Column(nullable = false, unique = true)
@@ -27,21 +24,10 @@ public class Car extends BaseEntity {
     @Column(nullable = false)
     private String model;
 
-    @NotBlank
     @Min(1900)
     @Max(2100)
     @Column(nullable = false)
     private int year;
-
-    @NotBlank
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private FuelType fuelType;
-
-    @NotBlank
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private TransmissionType transmission;
 
     @Min(0)
     private int mileage;
@@ -52,4 +38,3 @@ public class Car extends BaseEntity {
     @NotBlank
     private String color;
 }
-

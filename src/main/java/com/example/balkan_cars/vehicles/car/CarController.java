@@ -1,4 +1,4 @@
-package com.example.balkan_cars.car;
+package com.example.balkan_cars.vehicles.car;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

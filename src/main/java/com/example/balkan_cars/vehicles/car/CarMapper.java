@@ -1,4 +1,4 @@
-package com.example.balkan_cars.car;
+package com.example.balkan_cars.vehicles.car;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

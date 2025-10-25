@@ -1,4 +1,4 @@
-package com.example.balkan_cars.car;
+package com.example.balkan_cars.vehicles.car;
 
 import com.example.balkan_cars.enums.FuelType;
 import com.example.balkan_cars.enums.TransmissionType;

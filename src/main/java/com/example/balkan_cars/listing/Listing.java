@@ -1,14 +1,12 @@
 package com.example.balkan_cars.listing;
 
-import com.example.balkan_cars.car.Car;
+import com.example.balkan_cars.vehicles.car.Car;
 import com.example.balkan_cars.user.User;
 import com.example.balkan_cars.shared.BaseEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
-
-import java.time.Instant;
 
 @Entity
 @Table(name = "_listing")
