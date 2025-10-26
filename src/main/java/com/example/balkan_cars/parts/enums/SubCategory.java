@@ -1,4 +1,4 @@
-package com.example.balkan_cars.enums;
+package com.example.balkan_cars.parts.enums;
 
 public enum SubCategory {
     ENGINE,

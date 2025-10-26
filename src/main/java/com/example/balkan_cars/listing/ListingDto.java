@@ -1,8 +1,13 @@
 package com.example.balkan_cars.listing;
 
+import com.example.balkan_cars.listing.extras.ExtraCategory;
+import com.example.balkan_cars.listing.extras.ExtraType;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 
 public record ListingDto(
@@ -12,5 +17,7 @@ public record ListingDto(
         UUID carId,
         UUID sellerId,
         @Min(0) int price,
-        boolean isActive
+        boolean isActive,
+        Set<ExtraType> extras,
+        Map<ExtraCategory, List<ExtraType>> groupedExtras
 ) {}
