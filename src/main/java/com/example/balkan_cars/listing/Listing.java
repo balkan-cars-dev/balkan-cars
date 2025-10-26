@@ -1,5 +1,6 @@
 package com.example.balkan_cars.listing;
 
+import com.example.balkan_cars.listing.extras.ExtraType;
 import com.example.balkan_cars.vehicles.car.Car;
 import com.example.balkan_cars.user.User;
 import com.example.balkan_cars.shared.BaseEntity;
@@ -7,6 +8,9 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "_listing")
@@ -38,4 +42,10 @@ public class Listing extends BaseEntity {
 
     @Column(nullable = false)
     private boolean isActive = true;
+
+    @ElementCollection(targetClass = ExtraType.class, fetch = FetchType.EAGER)
+    @CollectionTable(name = "_listing_extras", joinColumns = @JoinColumn(name = "listing_id"))
+    @Enumerated(EnumType.STRING)
+    @Column(name = "extra_type")
+    private Set<ExtraType> extras = new HashSet<>();
 }
