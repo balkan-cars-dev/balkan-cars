@@ -1,6 +1,5 @@
 package com.example.balkan_cars.user;
 
-import com.example.balkan_cars.enums.UserType;
 import com.example.balkan_cars.shared.BaseEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;

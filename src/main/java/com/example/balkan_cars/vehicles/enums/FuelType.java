@@ -1,10 +1,10 @@
-package com.example.balkan_cars.enums;
+package com.example.balkan_cars.vehicles.enums;
 
 public enum FuelType {
     PETROL,
     DIESEL,
     HYBRID,
     ELECTRIC,
-    LPG,
+    PETROL_LPG,
     OTHER
 }

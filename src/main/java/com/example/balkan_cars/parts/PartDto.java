@@ -1,7 +1,7 @@
 package com.example.balkan_cars.parts;
 
-import com.example.balkan_cars.enums.State;
-import com.example.balkan_cars.enums.SubCategory;
+import com.example.balkan_cars.parts.enums.State;
+import com.example.balkan_cars.parts.enums.SubCategory;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
