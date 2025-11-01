@@ -16,7 +16,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "parts")
+@Table(name = "_parts")
 public class Part extends BaseEntity {
 
     @Enumerated(EnumType.STRING)

@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.UUID;
 
-@Controller("/users")
+@Controller
+@RequestMapping("/users")
 public class UserController {
     
     private final UserService userService;

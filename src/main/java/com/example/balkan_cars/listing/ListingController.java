@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.UUID;
 
-@Controller("/listings")
+@RestController
+@RequestMapping("/listings")
 public class ListingController {
 
     private final ListingService listingService;

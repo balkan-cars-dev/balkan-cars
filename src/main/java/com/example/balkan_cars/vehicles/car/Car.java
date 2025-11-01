@@ -15,12 +15,18 @@ import lombok.*;
 @AllArgsConstructor
 public class Car extends Vehicle {
 
-    @NotBlank
+    public Car(String vin, String brand, String model, int year, int mileage, int enginePower, String color, FuelType fuelType, TransmissionType transmission) {
+        super(vin, brand, model, year, mileage, enginePower, color);
+        this.fuelType = fuelType;
+        this.transmission = transmission;
+    }
+
+    @NotNull
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private FuelType fuelType;
 
-    @NotBlank
+    @NotNull
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private TransmissionType transmission;
