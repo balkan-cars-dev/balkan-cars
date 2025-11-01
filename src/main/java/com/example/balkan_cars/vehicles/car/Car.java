@@ -1,7 +1,7 @@
 package com.example.balkan_cars.vehicles.car;
 
-import com.example.balkan_cars.vehicles.enums.FuelType;
-import com.example.balkan_cars.vehicles.enums.TransmissionType;
+import com.example.balkan_cars.enums.FuelType;
+import com.example.balkan_cars.enums.TransmissionType;
 import com.example.balkan_cars.vehicles.Vehicle;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
