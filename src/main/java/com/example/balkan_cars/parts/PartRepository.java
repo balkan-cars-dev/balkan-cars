@@ -6,7 +6,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface PartRepository extends JpaRepository<Part, UUID> {
-    Part getByBussinesId(UUID businessId);
+    Part getByBusinessId(UUID businessId);
 
-    Optional<Part> findByBissnesId(UUID businessId);
+    Optional<Part> findByBusinessId(UUID businessId);
 }

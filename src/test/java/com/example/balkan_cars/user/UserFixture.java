@@ -1,5 +1,7 @@
 package com.example.balkan_cars.user;
 
+import com.example.balkan_cars.enums.UserType;
+
 import java.time.Instant;
 import java.util.UUID;
 

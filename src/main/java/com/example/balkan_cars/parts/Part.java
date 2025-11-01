@@ -1,7 +1,7 @@
 package com.example.balkan_cars.parts;
 
-import com.example.balkan_cars.parts.enums.State;
-import com.example.balkan_cars.parts.enums.SubCategory;
+import com.example.balkan_cars.enums.State;
+import com.example.balkan_cars.enums.SubCategory;
 import com.example.balkan_cars.shared.BaseEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
@@ -16,7 +16,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "parts")
+@Table(name = "_parts")
 public class Part extends BaseEntity {
 
     @Enumerated(EnumType.STRING)

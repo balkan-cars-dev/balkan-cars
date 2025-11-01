@@ -1,4 +1,4 @@
-package com.example.balkan_cars.vehicles.enums;
+package com.example.balkan_cars.enums;
 
 public enum TransmissionType {
     MANUAL,

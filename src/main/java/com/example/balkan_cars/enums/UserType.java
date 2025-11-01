@@ -1,4 +1,4 @@
-package com.example.balkan_cars.user;
+package com.example.balkan_cars.enums;
 
 public enum UserType {
     REGULAR_USER,
