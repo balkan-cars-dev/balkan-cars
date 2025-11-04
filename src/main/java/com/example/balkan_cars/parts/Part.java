@@ -6,6 +6,7 @@ import com.example.balkan_cars.enums.SubCategory;
 import com.example.balkan_cars.shared.BaseEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -49,6 +50,7 @@ public class Part extends BaseEntity {
     private String description;
     
     @Column(nullable = false)
+    @Min(1)
     private byte quantity;
     
     @Column(name = "image_uri", length = 2000)
