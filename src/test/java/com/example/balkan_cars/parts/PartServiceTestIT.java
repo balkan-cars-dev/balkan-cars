@@ -25,7 +25,7 @@ class PartServiceTestIT {
     private final UUID businessId = UUID.randomUUID();
     
     @Test
-    void createPart() {
+    void createPart_shouldSaveTheListOfImagesAsSingleString() {
         PartDto result = serviceToTest.create(createPartDto());
         assertEquals(result.imageUriList(), List.of("ph.jpg", "ph2.jpg", "ph3.jpg"));
         Part part = partRepository.getByBusinessId(businessId);
