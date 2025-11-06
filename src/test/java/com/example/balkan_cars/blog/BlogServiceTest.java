@@ -19,5 +19,12 @@ class BlogServiceTest {
         List<BlogDto> blogs = blogService.fetchCarFeed();
         assertNotNull(blogs);
     }
+    
+    @Test
+    void fetchBookFeed_shouldSetRandomId() throws Exception {
+        List<BlogDto> blogs = blogService.fetchCarFeed();
+        assertNotNull(blogs);
+        assertNotNull(blogs.get(0).id());
+    }
 
 }
