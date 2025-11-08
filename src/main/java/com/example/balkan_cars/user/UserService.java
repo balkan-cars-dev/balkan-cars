@@ -2,25 +2,22 @@ package com.example.balkan_cars.user;
 
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
 
 @Service
+@RequiredArgsConstructor
 public class UserService {
 
     private final String USER_NOT_FOUND = "User not found";
     
     private final UserRepository userRepository;
     private final UserMapper userMapper;
-
-    @Autowired
-    public UserService(UserRepository userRepository, UserMapper userMapper) {
-        this.userRepository = userRepository;
-        this.userMapper = userMapper;
-    }
+    private final PasswordEncoder passwordEncoder;
     
     public List<UserDto> findAll() {
         return userMapper.toDtos(userRepository.findAll());
@@ -33,15 +30,24 @@ public class UserService {
     
     @Transactional
     public UserDto create(UserDto userDto) {
-        return userMapper.toDto(userRepository.save(userMapper.toEntity(userDto)));
+        User user = userMapper.toEntity(userDto);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+
+        return userMapper.toDto(userRepository.save(user));
     }
 
     @Transactional
     public UserDto update(UserDto userDto) {
         User user = userRepository.getByBusinessId(userDto.id());
         if (user == null) throw new EntityNotFoundException(USER_NOT_FOUND);
+
         userMapper.updateUserFromDto(userDto, user);
-        return userMapper.toDto(userRepository.saveAndFlush(user));
+
+        if (userDto.password() != null && !userDto.password().isEmpty()) {
+            user.setPassword(passwordEncoder.encode(userDto.password()));
+        }
+
+        return userMapper.toDto(userRepository.save(user));
     }
     
     @Transactional
