@@ -1,23 +1,18 @@
 package com.example.balkan_cars.user;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
 
-@Controller
+@RestController
 @RequestMapping("/users")
+@RequiredArgsConstructor
 public class UserController {
     
     private final UserService userService;
 
-    @Autowired
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
-    
     @GetMapping("{id}")
     public UserDto getUserById(@PathVariable String id) {
         return userService.findById(UUID.fromString(id));
