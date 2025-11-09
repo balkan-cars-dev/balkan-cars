@@ -5,12 +5,13 @@ import io.jsonwebtoken.security.Keys;
 import org.springframework.stereotype.Component;
 
 import java.security.Key;
+import java.util.Base64;
 import java.util.Date;
 
 @Component
 public class JwtUtil {
-
-    private final String SECRET = "NikichataGalataGosheto123";
+    
+    private final String SECRET = Base64.getEncoder().encodeToString("NikichataGalataGosheto123".getBytes());
     private final long EXPIRATION = 1000 * 60 * 60 * 10; // 10 hours
 
     private final Key key = Keys.hmacShaKeyFor(SECRET.getBytes());

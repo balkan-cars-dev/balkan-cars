@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.util.List;
 
 @Component
 @RequiredArgsConstructor
@@ -25,6 +26,8 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
+        if (isPathOpen(request, response, filterChain)) return;
+
         final String authHeader = request.getHeader("Authorization");
         String username = null;
         String jwt = null;
@@ -47,5 +50,17 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
         filterChain.doFilter(request, response);
     }
-}
 
+    private boolean isPathOpen(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws IOException, ServletException {
+        String path = request.getRequestURI();
+        if (excludedPaths().stream().anyMatch(path::startsWith)) {
+            filterChain.doFilter(request, response);
+            return true;
+        }
+        return false;
+    }
+
+    private List<String> excludedPaths() {
+        return List.of("/cars", "/blog", "/login", "/listings");
+    }
+}
