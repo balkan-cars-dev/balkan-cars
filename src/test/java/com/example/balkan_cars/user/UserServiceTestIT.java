@@ -56,9 +56,9 @@ class UserServiceTestIT {
 
     @Test
     void shouldDeleteUser() {
-    userRepository.save(user);
-    serviceToTest.delete(userDto.id());
-    assertEquals(serviceToTest.findAll().isEmpty(), true);
+        userRepository.save(user);
+        serviceToTest.delete(userDto.id());
+        assertEquals(serviceToTest.findAll().isEmpty(), true);
     }
 
     @Test
@@ -72,6 +72,6 @@ class UserServiceTestIT {
     @Test
     void shouldNotFindUserAndThrowException() {
         UUID notExistingId = UUID.randomUUID();
-        assertThrows(EntityNotFoundException.class,() -> serviceToTest.findById(notExistingId));
+        assertThrows(EntityNotFoundException.class, () -> serviceToTest.findById(notExistingId));
     }
 }
