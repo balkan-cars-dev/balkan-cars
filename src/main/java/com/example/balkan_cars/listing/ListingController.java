@@ -28,12 +28,10 @@ public class ListingController {
     }
 
     @PostMapping
-    public ListingDto create(@RequestParam ListingDto listingDto) {
-        return listingService.create(listingDto);
-    }
+    public ListingDto create(@RequestBody ListingDto listingDto) {return listingService.create(listingDto);}
 
     @PutMapping
-    public ListingDto update(@RequestParam ListingDto listingDto) {
+    public ListingDto update(@RequestBody ListingDto listingDto) {
         return listingService.update(listingDto);
     }
 
