@@ -22,10 +22,18 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     private final JwtUtil jwtUtil;
     private final com.example.balkan_cars.security.CustomUserDetailsService userDetailsService;
 
+    // Define static list of public paths
+    private static final List<String> EXCLUDED_PATHS = List.of(
+            "/login",
+            "/register",
+            "/listings"
+    );
+
     @Override
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
+
         if (isPathOpen(request, response, filterChain)) return;
 
         final String authHeader = request.getHeader("Authorization");
@@ -51,16 +59,17 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         filterChain.doFilter(request, response);
     }
 
-    private boolean isPathOpen(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws IOException, ServletException {
+    private boolean isPathOpen(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+            throws IOException, ServletException {
+
         String path = request.getRequestURI();
-        if (excludedPaths().stream().anyMatch(path::startsWith)) {
+
+        boolean excluded = EXCLUDED_PATHS.stream().anyMatch(p -> path.equals(p) || path.startsWith(p + "/"));
+        if (excluded) {
             filterChain.doFilter(request, response);
             return true;
         }
-        return false;
-    }
 
-    private List<String> excludedPaths() {
-        return List.of("/cars", "/blog", "/login", "/listings");
+        return false;
     }
 }
