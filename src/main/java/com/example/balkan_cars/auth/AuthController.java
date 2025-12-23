@@ -22,11 +22,15 @@ public class AuthController {
 
     @PostMapping("/login")
     public LoginResponse login(@RequestBody LoginRequest request) {
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.email(), request.password()));
+        authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(request.email(), request.password())
+        );
 
-        String token = jwtUtil.generateToken(request.email());
+        // Fetch the user to get their actual ID and name
+        UserDto user = userService.findByEmail(request.email());
+        String token = jwtUtil.generateToken(user); // Pass the whole DTO to JwtUtil
 
-        return new LoginResponse(token);
+        return new LoginResponse(token, user.email(), user.id(), user.firstName());
     }
 
     @PostMapping("/register")

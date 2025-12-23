@@ -18,6 +18,11 @@ public class UserController {
         return userService.findById(UUID.fromString(id));
     }
 
+    @GetMapping("/id")
+    public UUID getUserIdByEmail(@RequestParam String email) {
+        return userService.findByEmail(email).id();
+    }
+
     @GetMapping
     public List<UserDto> getAllUsers() {
         return userService.findAll();
