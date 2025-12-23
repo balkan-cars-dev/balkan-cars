@@ -19,7 +19,7 @@ import java.util.List;
 @Service
 public class ImportTestData {
     
-    @Value("${app.db.init:false}")
+    @Value("${app.db.init:true}")
     private boolean enableImport;
     private CarRepository carRepository;
     private PartRepository partRepository;

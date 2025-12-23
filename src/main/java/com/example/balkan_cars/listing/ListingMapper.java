@@ -13,6 +13,7 @@ public interface ListingMapper {
     Listing toEntity(ListingDto dto);
 
     @Mapping(source = "businessId", target = "id")
+    @Mapping(source = "seller.id", target = "sellerId")
     @Mapping(target = "groupedExtras", expression = "java(listing.getGroupedExtras())")
     ListingDto toDto(Listing listing);
 

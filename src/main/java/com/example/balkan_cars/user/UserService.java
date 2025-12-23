@@ -30,6 +30,11 @@ public class UserService {
                 .orElseThrow(() -> new EntityNotFoundException(USER_NOT_FOUND)));
     }
 
+    public UserDto findByEmail(String email) {
+        return userMapper.toDto(userRepository.findByEmail(email)
+                .orElseThrow(() -> new EntityNotFoundException(USER_NOT_FOUND)));
+    }
+
     @Transactional
     public UserDto create(UserDto userDto) {
         User user = userMapper.toEntity(userDto);
