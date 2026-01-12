@@ -25,8 +25,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     // Define static list of public paths
     private static final List<String> EXCLUDED_PATHS = List.of(
             "/login",
-            "/register",
-            "/listings"
+            "/register"
     );
 
     @Override

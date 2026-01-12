@@ -9,6 +9,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/cars")
+@CrossOrigin(origins = "http://localhost:4200")
 public class CarController {
 
     private final CarService carService;
@@ -29,12 +30,12 @@ public class CarController {
     }
 
     @PostMapping
-    public CarDto createCar(@RequestParam CarDto carDto) {
+    public CarDto createCar(@RequestBody CarDto carDto) {
         return carService.create(carDto);
     }
 
     @PutMapping
-    public CarDto updateCar(@RequestParam CarDto carDto) {
+    public CarDto updateCar(@RequestBody CarDto carDto) {
         return carService.update(carDto);
     }
 

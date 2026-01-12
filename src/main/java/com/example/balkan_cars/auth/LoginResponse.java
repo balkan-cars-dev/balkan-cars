@@ -1,4 +1,10 @@
 package com.example.balkan_cars.auth;
 
-public record LoginResponse(String token) {
-}
+import java.util.UUID;
+
+public record LoginResponse(
+        String token,
+        String email,
+        UUID userId,
+        String firstName
+) {}

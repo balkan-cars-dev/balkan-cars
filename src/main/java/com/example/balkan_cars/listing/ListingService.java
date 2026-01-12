@@ -1,6 +1,9 @@
 package com.example.balkan_cars.listing;
 
 import com.example.balkan_cars.user.UserRepository;
+
+import com.example.balkan_cars.vehicles.car.CarDto;
+import com.example.balkan_cars.vehicles.car.CarMapper;
 import com.example.balkan_cars.vehicles.car.CarRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
@@ -20,6 +23,7 @@ public class ListingService {
 
     private final ListingRepository listingRepository;
     private final CarRepository carRepository;
+    private final CarMapper carMapper;
     private final UserRepository userRepository;
     private final ListingMapper listingMapper;
 
@@ -27,12 +31,14 @@ public class ListingService {
             ListingRepository listingRepository,
             CarRepository carRepository,
             UserRepository userRepository,
-            ListingMapper listingMapper
+            ListingMapper listingMapper,
+            CarMapper carMapper
     ) {
         this.listingRepository = listingRepository;
         this.carRepository = carRepository;
         this.userRepository = userRepository;
         this.listingMapper = listingMapper;
+        this.carMapper = carMapper;
     }
 
     public List<ListingDto> findAll() {
@@ -47,6 +53,17 @@ public class ListingService {
         return listingMapper.toDto(listing);
     }
 
+    public List<CarDto> findCarsBySeller(UUID sellerId) {
+        UUID userId = userRepository.findByBusinessId(sellerId).orElse(null).getId();
+
+        List<Listing> listings = listingRepository.findAllBySellerId(userId);
+
+        // 2. Map each listing's car to a CarDto
+        return listings.stream()
+                .map(listing -> carMapper.toDto(listing.getCar()))
+                .collect(Collectors.toList());
+    }
+
     @Transactional
     public ListingDto create(ListingDto dto) {
         Listing listing = listingMapper.toEntity(dto);
@@ -54,8 +71,7 @@ public class ListingService {
         listing.setCar(carRepository.findByBusinessId(dto.carId())
                 .orElseThrow(() -> new EntityNotFoundException(CAR_NOT_FOUND)));
 
-        listing.setSeller(userRepository.findByBusinessId(dto.sellerId())
-                .orElseThrow(() -> new EntityNotFoundException(USER_NOT_FOUND)));
+        listing.setSeller(userRepository.getByBusinessId(dto.sellerId()));
 
         if (listing.getExtras() == null) listing.setExtras(Set.of());
 
