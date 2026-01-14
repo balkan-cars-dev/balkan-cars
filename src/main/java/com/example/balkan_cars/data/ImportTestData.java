@@ -50,20 +50,60 @@ public class ImportTestData {
                 60000, 300, "yellow", FuelType.PETROL, TransmissionType.AUTOMATIC);
         carRepository.saveAll(List.of(car, car2, car3, car4));
     }
-    
+
     private void importParts() {
-        Part part = new Part("Brake discs", new DefinedCars("bmw", "535d", (short)2008),
-                SubCategory.BRAKES, State.NEW, 250,"bmw", "Selling new brake discs",(byte)2 ,
-                "test.jpg, test2.jpg");
-        Part part2 = new Part("timing chain", new DefinedCars("bmw", "340i", (short)2018),
-                SubCategory.ENGINE, State.NEW, 500, "febi",
-                "Selling new timing chain",(byte)1 , null);
-        Part part3 = new Part("Transmission oil", new DefinedCars("vw", "golf", (short)2020),
-                SubCategory.TRANSMISSION, State.NEW, 250, "vw",
-                "Selling new transmission oil",(byte)1 , null);
-        Part part4 = new Part("Brake pads", new DefinedCars("ford", "focus", (short)2021), 
-                SubCategory.BRAKES, State.NEW, 250, "brembo",
-                "Selling new brake pads",(byte)2 , null);
-        partRepository.saveAll(List.of(part, part2, part3, part4));
+
+        Part brakeDiscs = new Part(
+                "Brake discs",
+                SubCategory.BRAKES,
+                State.NEW,
+                250.00,
+                "BMW",
+                "Selling new original brake discs",
+                "BMW 535d 2008",
+                (byte) 2,
+                "brake1.jpg"
+        );
+
+        Part timingChain = new Part(
+                "Timing chain",
+                SubCategory.ENGINE,
+                State.NEW,
+                500.00,
+                "FEBI",
+                "New timing chain set",
+                "BMW 340i 2018",
+                (byte) 1,
+                null
+        );
+
+        Part transmissionOil = new Part(
+                "Transmission oil",
+                SubCategory.TRANSMISSION,
+                State.NEW,
+                80.00,
+                "VW",
+                "OEM transmission oil",
+                "VW Golf 2020",
+                (byte) 4,
+                null
+        );
+
+        Part brakePads = new Part(
+                "Brake pads",
+                SubCategory.BRAKES,
+                State.NEW,
+                120.00,
+                "BREMBO",
+                "Front brake pads",
+                "Ford Focus 2021",
+                (byte) 3,
+                null
+        );
+
+        partRepository.saveAll(
+                List.of(brakeDiscs, timingChain, transmissionOil, brakePads)
+        );
     }
+
 }

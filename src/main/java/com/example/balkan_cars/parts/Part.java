@@ -25,10 +25,6 @@ public class Part extends BaseEntity {
 
     @Column(name = "part", nullable = false)
     private String part;
-
-    @ManyToOne(fetch = FetchType.LAZY,
-            cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    private DefinedCars definedCars;
     
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
@@ -48,6 +44,9 @@ public class Part extends BaseEntity {
 
     @Column(nullable = false, length = 2000)
     private String description;
+    
+    @Column(nullable = false)
+    private String car;
     
     @Column(nullable = false)
     @Min(1)
