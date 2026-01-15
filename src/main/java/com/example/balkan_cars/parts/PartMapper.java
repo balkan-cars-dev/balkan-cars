@@ -17,6 +17,7 @@ public interface PartMapper {
 
     @Mapping(source = "businessId", target = "id")
     @Mapping(source = "imageUri", target = "imageUri")
+    @Mapping(source = "seller.businessId", target = "sellerId")
     PartDto toDto(Part entity);
 
     List<Part> toEntities(List<PartDto> dtos);

@@ -28,6 +28,11 @@ public class PartController {
         return partsService.findById(UUID.fromString(id));
     }
 
+    @GetMapping("/seller/{sellerId}")
+    public List<PartDto> getPartsBySeller(@PathVariable String sellerId) {
+        return partsService.findBySeller(UUID.fromString(sellerId));
+    }
+
     @PostMapping
     public PartDto createPart(@Valid @RequestBody PartDto dto) {
         return partsService.create(dto);

@@ -4,6 +4,7 @@ import com.example.balkan_cars.defined.cars.DefinedCars;
 import com.example.balkan_cars.enums.State;
 import com.example.balkan_cars.enums.SubCategory;
 import com.example.balkan_cars.shared.BaseEntity;
+import com.example.balkan_cars.user.User;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Min;
@@ -22,6 +23,10 @@ import java.util.List;
 @AllArgsConstructor
 @Table(name = "_parts")
 public class Part extends BaseEntity {
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "seller_id")
+    private User seller;
     
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)

@@ -21,16 +21,7 @@ import lombok.Setter;
 public class DefinedCars extends BaseEntity {
     
     @NotBlank
-    @Column(name = "car", nullable = false)
-    private String car;
-
-    @NotBlank
-    @Column(name = "model", nullable = false)
-    private String model;
-
-    @Min(1930)
-    @Max(2025)
-    @Column(name = "year", nullable = false)
-    private short year;
+    @Column(name = "brand", nullable = false, unique = true)
+    private String brand;
 
 }

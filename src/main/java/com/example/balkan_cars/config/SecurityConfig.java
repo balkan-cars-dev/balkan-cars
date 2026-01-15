@@ -29,9 +29,10 @@ public class SecurityConfig {
                         .requestMatchers("/auth/**", "/register", "/public/**", "/login", "/blog/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/listings", "/listings/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/cars", "/cars/**").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/parts", "/parts/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/parts", "/parts/{id}").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/definedCars", "/definedCars/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/users").permitAll()
-                        .requestMatchers("/users/**", "/wishlist/**", "/part-wishlist/**").authenticated()
+                        .requestMatchers("/users/**", "/wishlist/**", "/part-wishlist/**", "/parts/seller/**").authenticated()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(sess -> sess

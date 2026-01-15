@@ -21,6 +21,7 @@ public record PartDto(
         @NotBlank String description,
         @NotBlank String car,
         @Min(1) byte quantity,
-        String imageUri
+        String imageUri,
+        UUID sellerId
 ) {
 }

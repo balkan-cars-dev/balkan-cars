@@ -53,49 +53,42 @@ public class ImportTestData {
 
     private void importParts() {
 
-        Part brakeDiscs = new Part(
-                SubCategory.BRAKES,
-                State.NEW,
-                250.00,
-                "BMW",
-                "Selling new original brake discs",
-                "BMW 535d 2008",
-                (byte) 2,
-                "brake1.jpg"
-        );
+        Part brakeDiscs = new Part();
+        brakeDiscs.setSubCategory(SubCategory.BRAKES);
+        brakeDiscs.setState(State.NEW);
+        brakeDiscs.setPrice(250.00);
+        brakeDiscs.setManufacturer("BMW");
+        brakeDiscs.setDescription("Selling new original brake discs");
+        brakeDiscs.setCar("BMW 535d 2008");
+        brakeDiscs.setQuantity((byte) 2);
+        brakeDiscs.setImageUri("brake1.jpg");
 
-        Part timingChain = new Part(
-                SubCategory.ENGINE,
-                State.NEW,
-                500.00,
-                "FEBI",
-                "New timing chain set",
-                "BMW 340i 2018",
-                (byte) 1,
-                null
-        );
+        Part timingChain = new Part();
+        timingChain.setSubCategory(SubCategory.ENGINE);
+        timingChain.setState(State.NEW);
+        timingChain.setPrice(500.00);
+        timingChain.setManufacturer("FEBI");
+        timingChain.setDescription("New timing chain set");
+        timingChain.setCar("BMW 340i 2018");
+        timingChain.setQuantity((byte) 1);
 
-        Part transmissionOil = new Part(
-                SubCategory.TRANSMISSION,
-                State.NEW,
-                80.00,
-                "VW",
-                "OEM transmission oil",
-                "VW Golf 2020",
-                (byte) 4,
-                null
-        );
+        Part transmissionOil = new Part();
+        transmissionOil.setSubCategory(SubCategory.TRANSMISSION);
+        transmissionOil.setState(State.NEW);
+        transmissionOil.setPrice(80.00);
+        transmissionOil.setManufacturer("VW");
+        transmissionOil.setDescription("OEM transmission oil");
+        transmissionOil.setCar("VW Golf 2020");
+        transmissionOil.setQuantity((byte) 4);
 
-        Part brakePads = new Part(
-                SubCategory.BRAKES,
-                State.NEW,
-                120.00,
-                "BREMBO",
-                "Front brake pads",
-                "Ford Focus 2021",
-                (byte) 3,
-                null
-        );
+        Part brakePads = new Part();
+        brakePads.setSubCategory(SubCategory.BRAKES);
+        brakePads.setState(State.NEW);
+        brakePads.setPrice(120.00);
+        brakePads.setManufacturer("BREMBO");
+        brakePads.setDescription("Front brake pads");
+        brakePads.setCar("Ford Focus 2021");
+        brakePads.setQuantity((byte) 3);
 
         partRepository.saveAll(
                 List.of(brakeDiscs, timingChain, transmissionOil, brakePads)
