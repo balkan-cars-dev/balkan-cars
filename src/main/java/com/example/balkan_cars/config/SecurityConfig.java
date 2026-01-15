@@ -31,7 +31,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/cars", "/cars/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/parts", "/parts/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/users").permitAll()
-                        .requestMatchers("/users/**", "/wishlist/**").authenticated()
+                        .requestMatchers("/users/**", "/wishlist/**", "/part-wishlist/**").authenticated()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(sess -> sess
