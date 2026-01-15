@@ -22,9 +22,6 @@ import java.util.List;
 @AllArgsConstructor
 @Table(name = "_parts")
 public class Part extends BaseEntity {
-
-    @Column(name = "part", nullable = false)
-    private String part;
     
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)

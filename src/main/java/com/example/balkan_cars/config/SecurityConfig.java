@@ -23,11 +23,16 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
+                .cors(cors -> cors.configure(http))
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/**", "/register", "/public/**", "/login").permitAll()
+                        .requestMatchers("/auth/**", "/register", "/public/**", "/login", "/blog/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/listings", "/listings/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/cars", "/cars/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/parts", "/parts/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/users").permitAll()
-                        .anyRequest().permitAll()
+                        .requestMatchers("/users/**", "/wishlist/**").authenticated()
+                        .anyRequest().authenticated()
                 )
                 .sessionManagement(sess -> sess
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)

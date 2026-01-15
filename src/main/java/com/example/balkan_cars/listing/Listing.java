@@ -43,6 +43,9 @@ public class Listing extends BaseEntity {
     @Column(nullable = false)
     private int price;
 
+    @Column(nullable = true)
+    private String location;
+
     @Column(nullable = false)
     private boolean isActive = true;
 

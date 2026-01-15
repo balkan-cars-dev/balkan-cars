@@ -47,10 +47,10 @@ public class AuthIntegrationTest {
     public void testLoginReturnsJwtToken() {
         LoginRequest loginRequest = new LoginRequest(testUser.email(), "password123");
 
-        ResponseEntity<LoginResponse> response = restTemplate.postForEntity(
+        ResponseEntity<AuthResponse> response = restTemplate.postForEntity(
                 "/auth/login",
                 loginRequest,
-                LoginResponse.class
+                AuthResponse.class
         );
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
@@ -62,10 +62,10 @@ public class AuthIntegrationTest {
     public void testAccessProtectedEndpointWithJwt() {
         // Step 1: Login to get JWT
         LoginRequest loginRequest = new LoginRequest(testUser.email(), "password123");
-        ResponseEntity<LoginResponse> loginResponse = restTemplate.postForEntity(
+        ResponseEntity<AuthResponse> loginResponse = restTemplate.postForEntity(
                 "/auth/login",
                 loginRequest,
-                LoginResponse.class
+                AuthResponse.class
         );
 
         String token = loginResponse.getBody().token();

@@ -21,7 +21,7 @@ public class ListingController {
     }
 
     @GetMapping("/user/{userId}")
-    public List<CarDto> getByUser(@PathVariable UUID userId) {
+    public List<ListingDto> getByUser(@PathVariable UUID userId) {
         return listingService.findCarsBySeller(userId);
     }
 

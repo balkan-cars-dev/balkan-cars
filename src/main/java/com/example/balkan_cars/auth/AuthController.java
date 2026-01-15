@@ -21,7 +21,7 @@ public class AuthController {
     private final UserService userService;
 
     @PostMapping("/login")
-    public LoginResponse login(@RequestBody LoginRequest request) {
+    public AuthResponse login(@RequestBody LoginRequest request) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(request.email(), request.password())
         );
@@ -30,11 +30,13 @@ public class AuthController {
         UserDto user = userService.findByEmail(request.email());
         String token = jwtUtil.generateToken(user); // Pass the whole DTO to JwtUtil
 
-        return new LoginResponse(token, user.email(), user.id(), user.firstName());
+        return new AuthResponse(token, user.email(), user.id(), user.firstName());
     }
 
     @PostMapping("/register")
-    public UserDto register(@RequestBody RegisterRequest request) {
-        return userService.register(request);
+    public AuthResponse register(@RequestBody RegisterRequest request) {
+        UserDto user = userService.register(request);
+        String token = jwtUtil.generateToken(user);
+        return new AuthResponse(token, user.email(), user.id(), user.firstName());
     }
 }

@@ -12,8 +12,7 @@ import java.util.List;
 import java.util.UUID;
 
 public record PartDto(
-        @NotNull UUID id,
-        @NotBlank String part,
+        UUID id,
         @NotNull SubCategory subCategory,
         @NotNull State state,
         @DecimalMin(value = "0.0", inclusive = false)
@@ -22,6 +21,6 @@ public record PartDto(
         @NotBlank String description,
         @NotBlank String car,
         @Min(1) byte quantity,
-        List<String> imageUriList
+        String imageUri
 ) {
 }

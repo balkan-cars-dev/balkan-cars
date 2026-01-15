@@ -17,6 +17,7 @@ public record ListingDto(
         UUID carId,
         UUID sellerId,
         @Min(0) int price,
+        String location,
         boolean isActive,
         Set<ExtraType> extras,
         Map<ExtraCategory, List<ExtraType>> groupedExtras

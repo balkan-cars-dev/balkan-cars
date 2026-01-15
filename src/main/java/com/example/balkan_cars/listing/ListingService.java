@@ -53,14 +53,13 @@ public class ListingService {
         return listingMapper.toDto(listing);
     }
 
-    public List<CarDto> findCarsBySeller(UUID sellerId) {
+    public List<ListingDto> findCarsBySeller(UUID sellerId) {
         UUID userId = userRepository.findByBusinessId(sellerId).orElse(null).getId();
 
         List<Listing> listings = listingRepository.findAllBySellerId(userId);
 
-        // 2. Map each listing's car to a CarDto
         return listings.stream()
-                .map(listing -> carMapper.toDto(listing.getCar()))
+                .map(listingMapper::toDto)
                 .collect(Collectors.toList());
     }
 

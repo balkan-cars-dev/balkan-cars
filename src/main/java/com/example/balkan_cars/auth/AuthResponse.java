@@ -2,7 +2,7 @@ package com.example.balkan_cars.auth;
 
 import java.util.UUID;
 
-public record LoginResponse(
+public record AuthResponse(
         String token,
         String email,
         UUID userId,

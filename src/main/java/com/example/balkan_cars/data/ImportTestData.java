@@ -54,7 +54,6 @@ public class ImportTestData {
     private void importParts() {
 
         Part brakeDiscs = new Part(
-                "Brake discs",
                 SubCategory.BRAKES,
                 State.NEW,
                 250.00,
@@ -66,7 +65,6 @@ public class ImportTestData {
         );
 
         Part timingChain = new Part(
-                "Timing chain",
                 SubCategory.ENGINE,
                 State.NEW,
                 500.00,
@@ -78,7 +76,6 @@ public class ImportTestData {
         );
 
         Part transmissionOil = new Part(
-                "Transmission oil",
                 SubCategory.TRANSMISSION,
                 State.NEW,
                 80.00,
@@ -90,7 +87,6 @@ public class ImportTestData {
         );
 
         Part brakePads = new Part(
-                "Brake pads",
                 SubCategory.BRAKES,
                 State.NEW,
                 120.00,
