@@ -46,15 +46,13 @@ public class PartService {
 
     @Transactional
     public PartDto create(PartDto dto) {
-        Part part = partsMapper.toEntity(dto);
-        
-        // Set seller from sellerId in DTO
+        Part part = partsMapper.toEntity(dto);// Set seller from sellerId in DTO
         if (dto.sellerId() != null) {
             User seller = userRepository.findByBusinessId(dto.sellerId())
                     .orElseThrow(() -> new EntityNotFoundException("Seller not found"));
             part.setSeller(seller);
         }
-        
+        part.setPhone((part.getSeller() != null) ? part.getSeller().getPhone() : "");
         Part saved = partsRepository.save(part);
 
         return partsMapper.toDto(saved);

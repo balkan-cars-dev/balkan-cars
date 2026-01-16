@@ -54,6 +54,9 @@ public class Part extends BaseEntity {
     @Min(1)
     private byte quantity;
     
-    @Column(name = "image_uri", length = 2000)
+    @Column(name = "image_uri", length = 3000000)
     private String imageUri;
+    
+    @Column(name = "phone")
+    private String phone;
 }

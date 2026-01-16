@@ -13,6 +13,7 @@ public interface PartMapper {
     @Mapping(source = "id", target = "businessId")
     @Mapping(target = "id", ignore = true)
     @Mapping(source = "imageUri", target = "imageUri")
+    @Mapping(target = "phone", ignore = true)
     Part toEntity(PartDto dto);
 
     @Mapping(source = "businessId", target = "id")
