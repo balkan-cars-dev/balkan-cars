@@ -54,6 +54,8 @@ public class Listing extends BaseEntity {
     @Enumerated(EnumType.STRING)
     @Column(name = "extra_type")
     private Set<ExtraType> extras = new HashSet<>();
+    
+    private String phone;
 
     @Transient
     public Map<ExtraCategory, List<ExtraType>> getGroupedExtras() {

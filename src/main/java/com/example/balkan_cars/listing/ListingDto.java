@@ -20,5 +20,6 @@ public record ListingDto(
         String location,
         boolean isActive,
         Set<ExtraType> extras,
-        Map<ExtraCategory, List<ExtraType>> groupedExtras
+        Map<ExtraCategory, List<ExtraType>> groupedExtras,
+        String phone
 ) {}

@@ -72,6 +72,7 @@ public class ListingService {
 
         listing.setSeller(userRepository.getByBusinessId(dto.sellerId()));
 
+        listing.setPhone(listing.getSeller().getPhone());
         if (listing.getExtras() == null) listing.setExtras(Set.of());
 
         return listingMapper.toDto(listingRepository.save(listing));

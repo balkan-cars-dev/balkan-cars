@@ -15,6 +15,7 @@ public record CarDto(
         TransmissionType transmission,
         int mileage,
         int enginePower,
-        String color
+        String color,
+        String image
 ) {
 }

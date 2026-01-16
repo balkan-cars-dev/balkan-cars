@@ -30,5 +30,8 @@ public class Car extends Vehicle {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private TransmissionType transmission;
+    
+    @Column(length = 3500000)
+    private String image;
 }
 
